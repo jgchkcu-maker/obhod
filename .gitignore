@@ -10,3 +10,4 @@ artifacts/
 
 # личные данные и логи приложения
 .state/
+!packaging/obhod.spec
