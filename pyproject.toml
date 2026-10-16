@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=75"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "obhod"
+version = "0.1.0"
+description = "Windows GUI for composing zapret strategies by service"
+readme = "README.md"
+requires-python = ">=3.11,<3.15"
+license = "GPL-3.0-or-later"
+dependencies = [
+  "PySide6>=6.8,<7", "PySide6-Fluent-Widgets>=1.7,<2",
+  "psutil>=6,<8", "pywin32>=308; sys_platform == 'win32'",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8,<10", "pyinstaller>=6.12,<7"]
+
+[project.gui-scripts]
+obhod = "obhod.__main__:main"
+
+[tool.setuptools.packages.find]
+include = ["obhod*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
+

@@ -1,0 +1,226 @@
+{
+  "schema": 1,
+  "blocks": [
+    {
+      "id": "E0",
+      "category": "epic-tcp",
+      "args": [
+        "--filter-tcp=443",
+        "--hostlist=${LISTS}/list-epic.txt",
+        "--hostlist=${LISTS}/list-epic-user.txt",
+        "--hostlist-exclude=${LISTS}/list-exclude-user.txt",
+        "--ipset-exclude=${LISTS}/ipset-exclude-user.txt"
+      ],
+      "source": "E0",
+      "label": "Без desync · контроль",
+      "scope": "loaded"
+    },
+    {
+      "id": "E1",
+      "category": "epic-tcp",
+      "args": [
+        "--filter-tcp=443",
+        "--hostlist=${LISTS}/list-epic.txt",
+        "--hostlist=${LISTS}/list-epic-user.txt",
+        "--hostlist-exclude=${LISTS}/list-exclude-user.txt",
+        "--ipset-exclude=${LISTS}/ipset-exclude-user.txt",
+        "--dpi-desync=multisplit",
+        "--dpi-desync-split-pos=1",
+        "--dpi-desync-split-seqovl=568",
+        "--dpi-desync-split-seqovl-pattern=${BIN}/tls_clienthello_4pda_to.bin"
+      ],
+      "source": "E1",
+      "label": "Multisplit · 568",
+      "scope": "loaded"
+    },
+    {
+      "id": "E2",
+      "category": "epic-tcp",
+      "args": [
+        "--filter-tcp=443",
+        "--hostlist=${LISTS}/list-epic.txt",
+        "--hostlist=${LISTS}/list-epic-user.txt",
+        "--hostlist-exclude=${LISTS}/list-exclude-user.txt",
+        "--ipset-exclude=${LISTS}/ipset-exclude-user.txt",
+        "--dpi-desync=fake,multisplit",
+        "--dpi-desync-split-pos=1,midsld",
+        "--dpi-desync-fake-tls=${BIN}/tls_clienthello_www_google_com.bin",
+        "--dpi-desync-fake-tls-mod=rnd,dupsid,sni=www.google.com",
+        "--dpi-desync-autottl=2"
+      ],
+      "source": "E2",
+      "label": "Fake TLS · AutoTTL",
+      "scope": "loaded"
+    },
+    {
+      "id": "E3",
+      "category": "epic-tcp",
+      "args": [
+        "--filter-tcp=443",
+        "--hostlist=${LISTS}/list-epic.txt",
+        "--hostlist=${LISTS}/list-epic-user.txt",
+        "--hostlist-exclude=${LISTS}/list-exclude-user.txt",
+        "--ipset-exclude=${LISTS}/ipset-exclude-user.txt",
+        "--dpi-desync=fake,fakedsplit",
+        "--dpi-desync-fooling=ts"
+      ],
+      "source": "E3",
+      "label": "Fake + fakedsplit · TS",
+      "scope": "loaded"
+    },
+    {
+      "id": "E4",
+      "category": "epic-tcp",
+      "args": [
+        "--filter-tcp=443",
+        "--hostlist=${LISTS}/list-epic.txt",
+        "--hostlist=${LISTS}/list-epic-user.txt",
+        "--hostlist-exclude=${LISTS}/list-exclude-user.txt",
+        "--ipset-exclude=${LISTS}/ipset-exclude-user.txt",
+        "--dpi-desync=hostfakesplit",
+        "--dpi-desync-hostfakesplit-mod=host=www.google.com"
+      ],
+      "source": "E4",
+      "label": "Hostfakesplit",
+      "scope": "loaded"
+    },
+    {
+      "id": "U0",
+      "category": "game-udp",
+      "args": [
+        "--filter-udp=${GAME_UDP}",
+        "--ipset=${LISTS}/ipset-game.txt",
+        "--ipset-exclude=${LISTS}/ipset-exclude.txt",
+        "--ipset-exclude=${LISTS}/ipset-exclude-user.txt"
+      ],
+      "source": "U0",
+      "label": "Без desync · контроль",
+      "scope": "loaded"
+    },
+    {
+      "id": "U1",
+      "category": "game-udp",
+      "args": [
+        "--filter-udp=${GAME_UDP}",
+        "--ipset=${LISTS}/ipset-game.txt",
+        "--ipset-exclude=${LISTS}/ipset-exclude.txt",
+        "--ipset-exclude=${LISTS}/ipset-exclude-user.txt",
+        "--dpi-desync=fake",
+        "--dpi-desync-repeats=12",
+        "--dpi-desync-fake-unknown-udp=${BIN}/ACTIVE_GAME_UDP.bin",
+        "--dpi-desync-cutoff=n2",
+        "--dpi-desync-any-protocol=1"
+      ],
+      "source": "U1",
+      "label": "Fake · 12 повторов",
+      "scope": "loaded"
+    },
+    {
+      "id": "U2",
+      "category": "game-udp",
+      "args": [
+        "--filter-udp=${GAME_UDP}",
+        "--ipset=${LISTS}/ipset-game.txt",
+        "--ipset-exclude=${LISTS}/ipset-exclude.txt",
+        "--ipset-exclude=${LISTS}/ipset-exclude-user.txt",
+        "--dpi-desync=fake",
+        "--dpi-desync-repeats=6",
+        "--dpi-desync-autottl=2",
+        "--dpi-desync-cutoff=n3",
+        "--dpi-desync-any-protocol=1"
+      ],
+      "source": "U2",
+      "label": "Fake · AutoTTL",
+      "scope": "loaded"
+    },
+    {
+      "id": "U3",
+      "category": "game-udp",
+      "args": [
+        "--filter-udp=${GAME_UDP}",
+        "--ipset=${LISTS}/ipset-game.txt",
+        "--ipset-exclude=${LISTS}/ipset-exclude.txt",
+        "--ipset-exclude=${LISTS}/ipset-exclude-user.txt",
+        "--dpi-desync=fake",
+        "--dpi-desync-repeats=6",
+        "--dpi-desync-fake-unknown-udp=${BIN}/stun.bin",
+        "--dpi-desync-fake-unknown-udp=${BIN}/zero.bin",
+        "--dpi-desync-cutoff=n3",
+        "--dpi-desync-any-protocol=1"
+      ],
+      "source": "U3",
+      "label": "Fake · STUN / zero",
+      "scope": "loaded"
+    },
+    {
+      "id": "U4",
+      "category": "game-udp",
+      "args": [
+        "--filter-udp=${GAME_UDP}",
+        "--ipset=${LISTS}/ipset-game.txt",
+        "--ipset-exclude=${LISTS}/ipset-exclude.txt",
+        "--ipset-exclude=${LISTS}/ipset-exclude-user.txt",
+        "--dpi-desync=ipfrag2",
+        "--dpi-desync-ipfrag-pos-udp=8",
+        "--dpi-desync-cutoff=n3",
+        "--dpi-desync-any-protocol=1"
+      ],
+      "source": "U4",
+      "label": "IP fragmentation",
+      "scope": "loaded"
+    },
+    {
+      "id": "U5",
+      "category": "game-udp",
+      "args": [
+        "--filter-udp=${GAME_UDP}",
+        "--ipset=${LISTS}/ipset-game.txt",
+        "--ipset-exclude=${LISTS}/ipset-exclude.txt",
+        "--ipset-exclude=${LISTS}/ipset-exclude-user.txt",
+        "--dpi-desync=fake,udplen",
+        "--dpi-desync-udplen-increment=2",
+        "--dpi-desync-cutoff=n3",
+        "--dpi-desync-any-protocol=1"
+      ],
+      "source": "U5",
+      "label": "Fake + UDP length",
+      "scope": "loaded"
+    },
+    {
+      "id": "T1",
+      "category": "game-tcp",
+      "args": [
+        "--filter-tcp=${GAME_TCP}",
+        "--ipset=${LISTS}/ipset-game.txt",
+        "--ipset-exclude=${LISTS}/ipset-exclude.txt",
+        "--ipset-exclude=${LISTS}/ipset-exclude-user.txt",
+        "--dpi-desync=multisplit",
+        "--dpi-desync-split-pos=1",
+        "--dpi-desync-split-seqovl=568",
+        "--dpi-desync-split-seqovl-pattern=${BIN}/tls_clienthello_4pda_to.bin",
+        "--dpi-desync-cutoff=n3",
+        "--dpi-desync-any-protocol=1"
+      ],
+      "source": "T1",
+      "label": "Multisplit · any protocol",
+      "scope": "loaded"
+    },
+    {
+      "id": "T2",
+      "category": "game-tcp",
+      "args": [
+        "--filter-tcp=${GAME_TCP}",
+        "--ipset=${LISTS}/ipset-game.txt",
+        "--ipset-exclude=${LISTS}/ipset-exclude.txt",
+        "--ipset-exclude=${LISTS}/ipset-exclude-user.txt",
+        "--dpi-desync=fake,multisplit",
+        "--dpi-desync-split-pos=1",
+        "--dpi-desync-cutoff=n3",
+        "--dpi-desync-any-protocol=1"
+      ],
+      "source": "T2",
+      "label": "Fake + multisplit",
+      "scope": "loaded"
+    }
+  ]
+}

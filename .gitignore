@@ -1,0 +1,14 @@
+.venv/
+__pycache__/
+.pytest_cache/
+*.egg-info/
+build/
+dist/
+*.spec
+vendor/
+artifacts/
+.test-state/
+
+.state/
+bin/
+lists/

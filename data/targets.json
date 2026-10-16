@@ -1,0 +1,134 @@
+{
+  "schema": 1,
+  "note": "HTTP 401/403/404 proves transport only. Matchmaking WS/XMPP/QoS must be captured locally; no guessed endpoints.",
+  "targets": [
+    {
+      "id": "yt-web",
+      "service": "youtube",
+      "category": "google-tcp",
+      "host": "www.youtube.com",
+      "path": "/",
+      "kind": "https"
+    },
+    {
+      "id": "yt-short",
+      "service": "youtube",
+      "category": "google-tcp",
+      "host": "youtu.be",
+      "path": "/",
+      "kind": "https"
+    },
+    {
+      "id": "yt-image",
+      "service": "youtube",
+      "category": "google-tcp",
+      "host": "i.ytimg.com",
+      "path": "/",
+      "kind": "https"
+    },
+    {
+      "id": "yt-video",
+      "service": "youtube",
+      "category": "google-tcp",
+      "host": "redirector.googlevideo.com",
+      "path": "/",
+      "kind": "https"
+    },
+    {
+      "id": "google",
+      "service": "youtube",
+      "category": "google-tcp",
+      "host": "www.google.com",
+      "path": "/",
+      "kind": "https"
+    },
+    {
+      "id": "gstatic",
+      "service": "youtube",
+      "category": "google-tcp",
+      "host": "www.gstatic.com",
+      "path": "/",
+      "kind": "https"
+    },
+    {
+      "id": "discord",
+      "service": "discord",
+      "category": "general-tcp",
+      "host": "discord.com",
+      "path": "/",
+      "kind": "https"
+    },
+    {
+      "id": "discord-ws",
+      "service": "discord",
+      "category": "general-tcp",
+      "host": "gateway.discord.gg",
+      "path": "/?v=10&encoding=json",
+      "kind": "websocket"
+    },
+    {
+      "id": "discord-cdn",
+      "service": "discord",
+      "category": "general-tcp",
+      "host": "cdn.discordapp.com",
+      "path": "/",
+      "kind": "https"
+    },
+    {
+      "id": "discord-updates",
+      "service": "discord",
+      "category": "general-tcp",
+      "host": "updates.discord.com",
+      "path": "/",
+      "kind": "https"
+    },
+    {
+      "id": "epic-account",
+      "service": "fortnite",
+      "category": "epic-tcp",
+      "host": "account-public-service-prod.ol.epicgames.com",
+      "path": "/account/api/version",
+      "kind": "https"
+    },
+    {
+      "id": "epic-lightswitch",
+      "service": "fortnite",
+      "category": "epic-tcp",
+      "host": "lightswitch-public-service-prod.ol.epicgames.com",
+      "path": "/lightswitch/api/service/bulk/status",
+      "kind": "https"
+    },
+    {
+      "id": "epic-fortnite",
+      "service": "fortnite",
+      "category": "epic-tcp",
+      "host": "fortnite-public-service-prod11.ol.epicgames.com",
+      "path": "/fortnite/api/version",
+      "kind": "https"
+    },
+    {
+      "id": "epic-cdn",
+      "service": "fortnite",
+      "category": "epic-tcp",
+      "host": "download.epicgames.com",
+      "path": "/",
+      "kind": "https"
+    },
+    {
+      "id": "epic-eos",
+      "service": "fortnite",
+      "category": "epic-tcp",
+      "host": "api.epicgames.dev",
+      "path": "/",
+      "kind": "https"
+    },
+    {
+      "id": "epic-eac",
+      "service": "fortnite",
+      "category": "epic-tcp",
+      "host": "www.easy.ac",
+      "path": "/",
+      "kind": "https"
+    }
+  ]
+}
